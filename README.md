@@ -12,7 +12,7 @@
 
 Liberte sua criatividade com o Inspire, a plataforma SaaS de inteligência artificial que transforma suas ideias em realidade.
 
-Com uma interface intuitiva e modelos de IA de última geração, Inspire é a ferramenta perfeita para criar conteúdo criativo, resolver problemas e aprender sobre novos tópicos, como:
+Com uma interface intuitiva e modelos de IA de última geração, Inspire é a ferramenta perfeita para criar conteúdo criativo, resolver problemas e aprender sobre novos tópicos. Oferecendo serviços como:
 
 * **Conversação:** Converse com um chatbot treinado em um grande conjunto de dados de texto e código.
 * **Geração de Música:** Crie músicas originais usando um modelo de aprendizado de máquina.
