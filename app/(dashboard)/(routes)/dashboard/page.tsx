@@ -8,7 +8,7 @@ export default function DashboardPage() {
           Explore o poder da IA
         </h2>
         <p className="text-muted-foreground font-light text-sm md:text-lg text-center">
-          Converse com a IA mais inteligente - Explore o poder da IA
+          Converse com a IA mais inteligente - Descubra o potencial da IA
         </p>
       </section>
 
