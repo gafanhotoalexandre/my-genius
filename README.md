@@ -46,3 +46,30 @@ Inspire é construído com as seguintes tecnologias:
 - Tailwind CSS
 - Shadcn/UI
 - e muito mais
+
+### Instalação
+Clone o repositório e instale as dependências:
+
+```bash
+git clone https://github.com/gafanhotoalexandre/my-genius.git
+cd my-genius
+npm install
+```
+
+Crie um arquivo ``` .env.local ```, copie as variáveis abaixo e preencha-as de acordo com os dados de seu ambiente.
+
+OBS: Não modifique as variáveis de sign-in, sign-up, after sign-in e after sign-up.
+```bash
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=
+CLERK_SECRET_KEY=
+
+NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
+NEXT_PUBLIC_CLERK_SIGN_UP_URL=/sign-up
+NEXT_PUBLIC_CLERK_AFTER_SIGN_IN_URL=/dashboard
+NEXT_PUBLIC_CLERK_AFTER_SIGN_UP_URL=/dashboard
+```
+
+Por fim, execute:
+```bash
+npm run dev
+```
