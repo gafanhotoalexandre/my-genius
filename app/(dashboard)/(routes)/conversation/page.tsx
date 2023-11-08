@@ -21,6 +21,8 @@ import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import { Empty } from '@/components/Empty'
 import { Loader } from '@/components/Loader'
+import { BotAvatar } from '@/components/BotAvatar'
+import { UserAvatar } from '@/components/UserAvatar'
 
 import { ConversationValidation } from '@/lib/validations/conversation'
 import { cn } from '@/lib/utils'
@@ -134,7 +136,8 @@ export default function ConversationPage() {
                     : 'bg-white border border-black/10',
                 )}
               >
-                {message.content}
+                {message.role === 'assistant' ? <BotAvatar /> : <UserAvatar />}
+                <p className="text-sm">{message.content}</p>
               </div>
             ))}
           </div>
