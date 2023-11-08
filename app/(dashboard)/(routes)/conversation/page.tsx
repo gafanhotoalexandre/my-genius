@@ -1,9 +1,13 @@
 'use client'
 
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { MessageSquare } from 'lucide-react'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
+import { OpenAI } from 'openai'
+import axios from 'axios'
 
 import { Heading } from '@/components/Heading'
 import {
@@ -19,6 +23,11 @@ import { Button } from '@/components/ui/button'
 import { ConversationValidation } from '@/lib/validations/conversation'
 
 export default function ConversationPage() {
+  const router = useRouter()
+  const [messages, setMessages] = useState<OpenAI.Chat.ChatCompletionMessage[]>(
+    [],
+  )
+
   const form = useForm({
     resolver: zodResolver(ConversationValidation),
     defaultValues: {
@@ -29,6 +38,30 @@ export default function ConversationPage() {
   const isLoading = form.formState.isSubmitting
 
   async function onSubmit(values: z.infer<typeof ConversationValidation>) {
+    try {
+      const userMessage: OpenAI.Chat.ChatCompletionCreateParams = {
+        messages: [{ role: 'user', content: values.prompt }],
+        model: 'gpt-3.5-turbo',
+      }
+      const newMessages = [...messages, userMessage.messages[0]]
+
+      const response = await axios.post('/api/conversation', {
+        messages: newMessages,
+      })
+
+      setMessages((current) => [
+        ...current,
+        userMessage.messages[0],
+        response.data,
+      ])
+
+      form.reset()
+    } catch (error) {
+      // TODO: Open Pro Modal
+      console.log(error)
+    } finally {
+      router.refresh()
+    }
     console.log(values)
   }
 
@@ -76,7 +109,13 @@ export default function ConversationPage() {
           </Form>
         </div>
 
-        <section className="space-y-4 mt-4">messages content</section>
+        <section className="space-y-4 mt-4">
+          <div className="flex flex-col-reverse gap-y-4">
+            {messages.map((message) => (
+              <div key={message.content}>{message.content}</div>
+            ))}
+          </div>
+        </section>
       </section>
     </div>
   )
