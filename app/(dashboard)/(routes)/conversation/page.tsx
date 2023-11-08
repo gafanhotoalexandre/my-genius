@@ -19,6 +19,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
+import { Empty } from '@/components/Empty'
 
 import { ConversationValidation } from '@/lib/validations/conversation'
 
@@ -110,6 +111,10 @@ export default function ConversationPage() {
         </div>
 
         <section className="space-y-4 mt-4">
+          {messages.length === 0 && !isLoading && (
+            <Empty label="Nenhuma conversa iniciada." />
+          )}
+
           <div className="flex flex-col-reverse gap-y-4">
             {messages.map((message) => (
               <div key={message.content}>{message.content}</div>
